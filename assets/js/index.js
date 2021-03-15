@@ -32,10 +32,10 @@ function getUserInfo() {
         //     Authorization: localStorage.getItem('token') || ''
         // },
         success: (res) => {
-            console.log(res);
+            // console.log(res);
 
             if (res.status != 0) {
-                console.log(11);
+                // console.log(11);
                 return layui.layer.msg(res.message, { icon: 5 })
             }
             //头像和文字渲染
