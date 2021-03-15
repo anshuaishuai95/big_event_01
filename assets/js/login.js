@@ -32,8 +32,9 @@ $(function () {
         e.preventDefault();
         //发送ajax
         $.ajax({
-            url: '/api/reguser',
             type: 'POST',
+            url: '/api/reguser',
+
             data: {
                 username: $('.reg-box input[name=username]').val(),
                 password: $('.reg-box input[name=password]').val(),
@@ -41,7 +42,7 @@ $(function () {
             success: (res) => {
                 // console.log(res);
                 //返回状态判断
-                if (res.status !== 0) {
+                if (res.status != 0) {
                     // return alert(res.message)
                     return layer.msg(res.message, { icon: 5 });
                 }
@@ -61,8 +62,9 @@ $(function () {
         e.preventDefault();
         //发送ajax
         $.ajax({
-            url: '/api/login',
             type: 'POST',
+            url: '/api/login',
+
             data: $(this).serialize(),
             success: function (res) {
                 //返回状态判断
