@@ -18,7 +18,7 @@ $(function () {
             url: '/my/userinfo',
 
             success: (res) => {
-                // console.log(res);
+                // console.log(123, res);
                 if (res.status != 0) {
                     return layer.msg(res.mseeage, { icon: 5 })
                 }
@@ -44,7 +44,7 @@ $(function () {
             url: '/my/userinfo',
             data: $(this).serialize(),
             success: (res) => {
-                console.log(res);
+                // console.log(res);
                 if (res.status != 0) {
                     return layer.msg(res.mseeage, { icon: 5 });
                 }

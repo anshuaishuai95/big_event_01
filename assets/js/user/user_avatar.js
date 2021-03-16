@@ -18,7 +18,6 @@ $(window).on('load', function () {
     })
 
     //3 选择图片后， 修改裁剪区域
-
     $('#file').on('change', function (e) {
         let file = e.target.files[0];
         //根据文件产生一个内存模拟地址
