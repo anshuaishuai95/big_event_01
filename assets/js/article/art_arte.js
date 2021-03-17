@@ -101,7 +101,31 @@ $(function () {
         })
     })
     // //6 删除
-    // $('tbody').on('click', 'btn-delete', function () {
-    //     //先获取 Id 进入到函数中this代指就改变了
-    // })
+    $('tbody').on('click', '.btn-delete', function () {
+        //先获取 Id 进入到函数中this代指就改变了
+        let Id = $(this).attr('data-id')
+        // console.log(Id);
+        //eg1
+        layer.confirm('是否确定要删除?', { icon: 3, title: '提示' }, function (index) {
+            //do something
+            // 发送ajax
+            $.ajax({
+                method: 'get',
+                url: '/my/article/deletecate/' + Id,
+                success: (res) => {
+                    // console.log(res);
+                    if (res.status != 0) {
+                        return layer.msg(res.message)
+                    }
+                    //删除成功
+                    layer.msg(res.message);
+                    //删除成功后重新渲染页面
+                    initArtCateList()
+                    layer.close(index);
+                }
+            })
+
+
+        });
+    })
 })
