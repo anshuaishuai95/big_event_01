@@ -31,9 +31,11 @@ $(function () {
         $.ajax({
             type: 'post',
             url: '/my/updatepwd',
-            data: $(this).serialize(),
+            data: {
+                oldPwd: $('[name=oldPwd]').val(), newPwd: $('[name=newPwd]').val(), id: window.parent.ID
+            },
             success: (res) => {
-                //    console.log(res);
+                console.log(111, res);
                 if (res.status != 0) {
                     return layui.layer.msg(res.message, { icon: 5 })
 

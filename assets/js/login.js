@@ -64,11 +64,10 @@ $(function () {
         $.ajax({
             type: 'POST',
             url: '/api/login',
-
             data: $(this).serialize(),
             success: function (res) {
                 //返回状态判断
-                console.log(res);
+                // console.log(11111, res);
                 if (res.status !== 0) {
                     // return alert(res.message)
                     return layer.msg(res.message);
@@ -78,6 +77,7 @@ $(function () {
                 //保存token  未来接口使用的token
                 localStorage.setItem('token', res.token);
                 //登录成功 跳转页面
+                // localStorage.setItem("username", $('#form_login input[name=username]').val())
                 location.href = '/index.html';
 
             }

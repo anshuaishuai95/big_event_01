@@ -33,16 +33,18 @@ $(function () {
         });
 
     })
-
     //3： 事件委托  因为form表单是在script标签模板引擎里面，所有父元素是body
     $('body').on('submit', '#form-add', function (e) {
         e.preventDefault();
         $.ajax({
             method: 'post',
             url: '/my/article/addcates',
-            data: $(this).serialize(),
+            data: {
+                name: $('[name=name]').val(),
+                alias: $('[name=alias]').val()
+            },
             success: (res) => {
-                // console.log(res);
+                console.log(res);
                 if (res.status != 0) {
                     return layer.msg(res.message)
                 }
@@ -56,8 +58,11 @@ $(function () {
     //4：修改文章类别，（html结构） 事件委托
     let indexEdit = null
     let form = layui.form
+    let id = ''
     $('tbody').on('click', '.btn-edit', function () {
         // 显示修改的 form
+        id = $(this).attr('data-id');
+        // console.log(id);
         indexEdit = layer.open({
             type: 1,
             title: '修改文章分类',
@@ -65,13 +70,11 @@ $(function () {
             content: $('#dialog-edit').html()
         });
         //发送ajax 把数据渲染到 form 中
-        let Id = $(this).attr('data-id')
         $.ajax({
             method: 'get',
-            url: '/my/article/cates/' + Id,
-
+            url: '/my/article/cates/',
             success: (res) => {
-                // console.log(6666, res);
+                console.log(6666, res);
                 if (res.status != 0) {
                     return layer.msg(res.message)
                 }
@@ -84,12 +87,17 @@ $(function () {
     // 5   修改 提交
     $('body').on('submit', '#form-edit', function (e) {
         e.preventDefault();
+        console.log(id);
         $.ajax({
             method: 'post',
             url: '/my/article/updatecate',
-            data: $(this).serialize(),
+            data: {
+                id: id,
+                name: $('[name=name]').val(),
+                alias: $('[name=alias]').val(),
+            },
             success: (res) => {
-                // console.log(123, res);
+                console.log(123, res);
                 if (res.status != 0) {
                     return layer.msg(res.message)
                 }
@@ -103,15 +111,18 @@ $(function () {
     // //6 删除
     $('tbody').on('click', '.btn-delete', function () {
         //先获取 Id 进入到函数中this代指就改变了
-        let Id = $(this).attr('data-id')
-        // console.log(Id);
+        let Id = JSON.parse($(this).attr('data-id'))
+        console.log(123, Id);
         //eg1
         layer.confirm('是否确定要删除?', { icon: 3, title: '提示' }, function (index) {
             //do something
             // 发送ajax
             $.ajax({
                 method: 'get',
-                url: '/my/article/deletecate/' + Id,
+                url: '/my/article/deletecate/',
+                data: {
+                    id: Id
+                },
                 success: (res) => {
                     // console.log(res);
                     if (res.status != 0) {

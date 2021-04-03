@@ -2,7 +2,7 @@
 //   接收到 ajax 响应以后，也会触动这个方法;
 
 // 开发环境服务器路径地址
-let baseURL = 'http://api-breakingnews-web.itheima.net';
+let baseURL = 'http://127.0.0.1:3002';
 // // 测试环境服务器路径地址
 // let baseURL = 'http://api-breakingnews-web.itheima.net';
 // // 生产环境服务器路径地址

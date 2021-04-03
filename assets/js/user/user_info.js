@@ -16,7 +16,6 @@ $(function () {
         $.ajax({
             method: 'get',
             url: '/my/userinfo',
-
             success: (res) => {
                 // console.log(123, res);
                 if (res.status != 0) {

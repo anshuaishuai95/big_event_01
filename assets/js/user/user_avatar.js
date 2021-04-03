@@ -45,9 +45,10 @@ $(window).on('load', function () {
         //发送ajax
         $.ajax({
             type: 'post',
-            url: '/my/update/avatar',
+            url: '/my/userinfo',
             data: {
-                avatar: dataURL
+                id: window.parent.ID,
+                userPic: dataURL
             },
             success: (res) => {
                 // console.log(res);
